@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Self Service Order</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main id="app">
+    <section class="items">
+      <h4> {{message}}</h4>
+      <div class="product" v-for="product in products" @click="product.active = !product.active"
+      :class="{selected: product.active }">
+      <div class="photo">
+        <img :src="product.photo" :alt="product.name">
+      </div>
+      <div class="description">
+        <span class="name"> {{product.name}} </span>
+        <span class="price"> {{product.price}} </span>
+        <div class="quantity-area">
+          <!-- STOP PROPAGATION  @click.stop-->
+          <button @click.stop="product.quantity--" :disable="true" >-</button>
+            <span class="quantity"> {{product.quantity}} </span>
+            <button @click.stop="product.quantity++">+</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
